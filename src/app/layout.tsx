@@ -1,6 +1,7 @@
 import { CartProvider } from "../context/CartContext";
 import Header from "../components/Header";
 import "./globals.css";
+import { ToastContainer } from "react-toastify";
 
 export const metadata = {
   title: "ITX Shop",
@@ -18,6 +19,7 @@ export default function RootLayout({
         <CartProvider>
           <Header />
           <main className="container mx-auto p-4">{children}</main>
+          <ToastContainer position="bottom-center" autoClose={3000} />
         </CartProvider>
       </body>
     </html>
