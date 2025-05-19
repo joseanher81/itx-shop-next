@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Product } from "../types/Product";
+import { ProductSummary, ProductDetail } from "../types/Product";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 const TIMEOUT = 10000;
@@ -14,7 +14,7 @@ export const api = axios.create({
 });
 
 // Get all products
-export const getProducts = async (): Promise<Product[]> => {
+export const getProducts = async (): Promise<ProductSummary[]> => {
   try {
     const response = await api.get("/product");
     return response.data;
@@ -25,7 +25,7 @@ export const getProducts = async (): Promise<Product[]> => {
 };
 
 // Get product by ID
-export const getProduct = async (id: string): Promise<Product> => {
+export const getProduct = async (id: string): Promise<ProductDetail> => {
   try {
     const response = await api.get(`/product/${id}`);
     return response.data;
