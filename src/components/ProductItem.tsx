@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Product } from "../types/Product";
+import { ProductSummary } from "../types/Product";
 
 interface Props {
-  product: Product;
+  product: ProductSummary;
 }
 
 const ProductItem = ({ product }: Props) => {
