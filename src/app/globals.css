@@ -42,7 +42,7 @@ a {
 }
 
 .back-link:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 /* Reset list defaults */
