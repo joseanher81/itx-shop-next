@@ -1,7 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: "https://itx-frontend-test.onrender.com/api/:path*",
+      },
+    ];
+  },
+  images: {
+    domains: ["itx-frontend-test.onrender.com"],
+  },
 };
 
 export default nextConfig;
