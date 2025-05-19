@@ -3,18 +3,18 @@
 import { useState, useEffect } from "react";
 import { getProducts } from "../services/productService";
 import { useCache } from "../hooks/useCache";
-import { Product } from "../types/Product";
+import { ProductSummary } from "../types/Product";
 import ProductItem from "../components/ProductItem";
 import Search from "../components/Search";
 
 export default function HomePage() {
-  const { data, loading, error } = useCache<Product[]>(
+  const { data, loading, error } = useCache<ProductSummary[]>(
     "products",
     getProducts,
     60 * 60 * 1000
   );
   const [query, setQuery] = useState("");
-  const [filtered, setFiltered] = useState<Product[]>([]);
+  const [filtered, setFiltered] = useState<ProductSummary[]>([]);
 
   useEffect(() => {
     const products = data || [];
