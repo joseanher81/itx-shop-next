@@ -6,6 +6,7 @@ import {
   getProduct,
   addToCart as apiAddToCart,
 } from "../../../services/productService";
+import Link from "next/link";
 import { useCache } from "../../../hooks/useCache";
 import { useCartContext } from "../../../context/CartContext";
 import ProductImage from "../../../components/Image";
@@ -63,6 +64,10 @@ export default function ProductDetailsPage() {
 
   return (
     <div className="max-w-5xl mx-auto p-4 space-y-6">
+      <Link href="/" className="back-link">
+        ← Back
+      </Link>
+
       <div className="flex flex-col md:flex-row gap-6">
         <div className="flex-1">
           <ProductImage product={product} />

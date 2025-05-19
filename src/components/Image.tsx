@@ -14,7 +14,7 @@ const ProductImage = ({ product }: Props) => {
         src={product.imgUrl}
         alt={product.model}
         fill
-        className="object-contain rounded border"
+        className="object-contain"
         priority
       />
     </div>
