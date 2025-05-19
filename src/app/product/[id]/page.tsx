@@ -7,7 +7,7 @@ import { getProduct } from "../../../services/productService";
 import { useCartContext } from "../../../context/CartContext";
 import { addToCart as apiAddToCart } from "../../../services/productService";
 import { ProductDetail } from "../../../types/Product";
-//import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import Image from "next/image";
 
 export default function ProductDetailsPage() {
@@ -51,10 +51,10 @@ export default function ProductDetailsPage() {
 
       setCount(res.count);
       addToCart(product);
-      //toast.success('Product added to cart!');
+      toast.success("Product added to cart!");
     } catch (err) {
       console.log(err);
-      //toast.error('Failed to add to cart');
+      toast.error("Failed to add to cart");
     }
     setIsPending(false);
   };
