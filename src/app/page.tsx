@@ -1,9 +1,43 @@
-export default function Home() {
+"use client";
+
+import { useState, useEffect } from "react";
+import { getProducts } from "../services/productService";
+import { useCache } from "../hooks/useCache";
+import { Product } from "../types/Product";
+import ProductItem from "../components/ProductItem";
+import Search from "../components/Search";
+
+export default function HomePage() {
+  const { data, loading, error } = useCache<Product[]>(
+    "products",
+    getProducts,
+    60 * 60 * 1000
+  );
+  const [query, setQuery] = useState("");
+  const [filtered, setFiltered] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const products = data || [];
+    if (!products.length) return;
+    const result = products.filter((p) =>
+      `${p.brand} ${p.model}`.toLowerCase().includes(query.toLowerCase())
+    );
+    setFiltered(result);
+  }, [query, data]);
+
+  if (loading) return <p className="text-center py-8">Loading...</p>;
+  if (error)
+    return <p className="text-center text-red-500">Error loading products.</p>;
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <h1>This is the Shop Main page</h1>
-      </main>
+    <div className="space-y-6">
+      <Search query={query} setQuery={setQuery} />
+
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {filtered.map((product) => (
+          <ProductItem key={product.id} product={product} />
+        ))}
+      </div>
     </div>
   );
 }
