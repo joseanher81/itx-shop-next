@@ -8,13 +8,13 @@ import {
 } from "../../../services/productService";
 import { useCache } from "../../../hooks/useCache";
 import { useCartContext } from "../../../context/CartContext";
-import { toast } from "react-toastify";
 import ProductImage from "../../../components/Image";
 import Description from "../../../components/Description";
 import Actions from "../../../components/Actions";
 import Loading from "../../../components/Loading";
 import ErrorMessage from "../../../components/ErrorMessage";
 import { ProductDetail } from "../../../types/Product";
+import { toast } from "react-toastify";
 
 export default function ProductDetailsPage() {
   const { id } = useParams();
